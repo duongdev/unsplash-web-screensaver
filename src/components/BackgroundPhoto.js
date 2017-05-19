@@ -33,13 +33,13 @@ export default class BackgroundPhoto extends React.Component {
   }
 
   photoLoader = (photo, size = 'regular', percent = 50) => {
-    console.info('Loading', size);
     const ms = Date.now();
     const urls = photo.urls;
     const image = new Image();
     image.src = urls[size];
     image.onload = () => {
-      // if (percent < this.props.percent) return;
+      const currentPercent = (this.props.percent < 0) ? 100 : this.props.percent;
+      if (percent < currentPercent) return;
       console.info(`${size} photo loaded on ${Date.now() - ms}ms`);
       this.setState({
         photoURL: image.src

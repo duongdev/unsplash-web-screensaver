@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
-import BackgroundPhoto from 'components/BackgroundPhoto';
 import Spinner from 'components/Spinner';
+import BackgroundPhoto from 'components/BackgroundPhoto';
+import PhotoCredit from 'components/PhotoCredit';
 
 import getRandomPhoto from 'helpers/Unsplash';
 
@@ -17,14 +18,21 @@ class App extends Component {
   });
 
   render() {
+    const { spinnerPercent } = this.state;
     const photo = getRandomPhoto();
+
     return (
       <div className="App">
-        <Spinner percent={this.state.spinnerPercent} />
+        <Spinner percent={spinnerPercent} />
         <BackgroundPhoto
           photo={photo}
-          percent={this.state.spinnerPercent}
+          percent={spinnerPercent}
           onChangePercent={this.setSpinnerPercent}
+        />
+        <PhotoCredit
+          photo={photo}
+          onRefreshPhoto={() => {}}
+          loading={0 < spinnerPercent && spinnerPercent < 100}
         />
       </div>
     );

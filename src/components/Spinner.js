@@ -13,7 +13,8 @@ const Spinner = ({ percent }) => (
     <div style={{
       backgroundColor: 'teal',
       position: 'fixed',
-      left: 0, top: 0, height: 3, width: `${percent}%`,
+      left: 0, top: 0, height: 3,
+      width: `${(percent === -1 || percent === 100) ? 0 : percent}%`,
       opacity: (0 < percent && percent <= 100) ? 1 : 0,
       transition: 'all 1s'
     }} />

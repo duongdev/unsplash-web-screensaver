@@ -11,7 +11,7 @@ const Spinner = ({ percent }) => (
     zIndex
   }}>
     <div style={{
-      backgroundColor: 'teal',
+      backgroundColor: 'orange',
       position: 'fixed',
       left: 0, top: 0, height: 3,
       width: `${(percent === -1 || percent === 100) ? 0 : percent}%`,

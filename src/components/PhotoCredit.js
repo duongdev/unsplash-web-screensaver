@@ -40,12 +40,12 @@ const PhotoCredit = ({
         boxShadow: '#000 0 0 20px'
       }} />
       <a
-        href={photo.user.portfolio_url}
+        href={`https://unsplash.com/@${photo.user.username}?utm_source=desktop-screensaver&utm_medium=referral&utm_campaign=api-credit`}
         title="View profile"
         target="_blank"
         rel="noopener noreferrer"
         style={{ marginRight: 5 }}
-      >{photo.user.name}</a>
+      >{photo.user.name} / Unsplash</a>
       <FA
         name="heart"
         style={{

@@ -1,18 +1,31 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
+import BackgroundPhoto from 'components/BackgroundPhoto';
+import Spinner from 'components/Spinner';
+
+import getRandomPhoto from 'helpers/Unsplash';
+
 import './App.css';
 
 class App extends Component {
+  state = {
+    spinnerPercent: 0
+  };
+
+  setSpinnerPercent = spinnerPercent => this.setState({
+    spinnerPercent: spinnerPercent === 100 ? -1 : spinnerPercent
+  });
+
   render() {
+    const photo = getRandomPhoto();
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Spinner percent={this.state.spinnerPercent} />
+        <BackgroundPhoto
+          photo={photo}
+          percent={this.state.spinnerPercent}
+          onChangePercent={this.setSpinnerPercent}
+        />
       </div>
     );
   }

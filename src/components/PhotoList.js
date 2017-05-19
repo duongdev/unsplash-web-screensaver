@@ -32,7 +32,6 @@ export default class PhotoList extends React.Component {
 
   render() {
     const { photos, idx, loading } = this.props;
-    console.log(this.props.scroll)
 
     return (
       <div

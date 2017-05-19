@@ -9,6 +9,8 @@ import PhotoList from 'components/PhotoList';
 import getRandomPhoto from 'helpers/Unsplash';
 import getHomeStatus from 'helpers/HomeStatus';
 
+import FA from 'react-fontawesome';
+
 import './App.css';
 
 const HOME_STATUS_INTERVAL = 30; // Get home temperature & humidity every 30 seconds
@@ -95,6 +97,14 @@ class App extends Component {
           onSelectPhoto={this.handleSelectPhoto}
           loading={0 < spinnerPercent && spinnerPercent < 100}
         />
+        <div style={{
+          position: 'fixed',
+          top: 10, right: 20,
+          color: 'white', opacity: 0.7,
+          fontSize: '0.8em'
+        }}>
+          Made with <FA name="heart" style={{ color: 'red' }} /> by <strong>Thượng Dương</strong>
+        </div>
       </div>
     );
   }

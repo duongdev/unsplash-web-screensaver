@@ -11,15 +11,39 @@ import './App.css';
 class App extends Component {
   state = {
     spinnerPercent: 0
-  };
+  }
+
+  componentDidMount() {
+    this.refreshPhoto();
+  }
+
+  refreshPhoto = () => {
+    if (this.state.spinnerPercent > 0 || this.state.loadingSplash) return;
+    this.setState({
+      loadingSplash: true,
+      spinnerPercent: 5
+    });
+
+    getRandomPhoto()
+    .then((response) => {
+      const { photo, limit, remaining } = response;
+      this.setState({
+        photo, limit, remaining,
+        loadingSplash: false
+      });
+    });
+  }
 
   setSpinnerPercent = spinnerPercent => this.setState({
     spinnerPercent: spinnerPercent === 100 ? -1 : spinnerPercent
   });
 
   render() {
-    const { spinnerPercent } = this.state;
-    const photo = getRandomPhoto();
+    const { spinnerPercent, photo, limit, remaining } = this.state;
+
+    if (!photo) {
+      return (<div>Loading...</div>);
+    }
 
     return (
       <div className="App">
@@ -31,8 +55,9 @@ class App extends Component {
         />
         <PhotoCredit
           photo={photo}
-          onRefreshPhoto={() => {}}
+          onRefreshPhoto={this.refreshPhoto}
           loading={0 < spinnerPercent && spinnerPercent < 100}
+          limit={limit} remaining={remaining}
         />
       </div>
     );

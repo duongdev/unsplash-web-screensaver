@@ -28,7 +28,7 @@ export default class BackgroundPhoto extends React.Component {
   photoPreload = (photo) => {
     this.photoLoader(photo, 'small', 10);
     this.photoLoader(photo, 'regular', 50);
-    this.photoLoader(photo, 'full', 90);
+    this.photoLoader(photo, 'full', 100);
     this.photoLoader(photo, 'raw', 100);
   }
 

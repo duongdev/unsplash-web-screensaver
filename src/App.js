@@ -3,18 +3,33 @@ import React, { Component } from 'react';
 import Spinner from 'components/Spinner';
 import BackgroundPhoto from 'components/BackgroundPhoto';
 import PhotoCredit from 'components/PhotoCredit';
+import ClockAndStatus from 'components/ClockAndStatus';
+import PhotoList from 'components/PhotoList';
 
 import getRandomPhoto from 'helpers/Unsplash';
+import getHomeStatus from 'helpers/HomeStatus';
 
 import './App.css';
 
+const HOME_STATUS_INTERVAL = 30; // Get home temperature & humidity every 30 seconds
+
 class App extends Component {
   state = {
-    spinnerPercent: 0
+    spinnerPercent: 0,
+    photoIndex: 0
   }
 
   componentDidMount() {
     this.refreshPhoto();
+    const _r = () => {
+      getHomeStatus().then(status => this.setState({
+        status
+      }));
+      this.handleSelectPhoto(this.state.photoIndex + 1, true)
+
+      setTimeout(_r, HOME_STATUS_INTERVAL * 1000);
+    }
+    _r();
   }
 
   refreshPhoto = () => {
@@ -26,20 +41,30 @@ class App extends Component {
 
     getRandomPhoto()
     .then((response) => {
-      const { photo, limit, remaining } = response;
+      const { photo, limit, remaining, photos } = response;
       this.setState({
-        photo, limit, remaining,
-        loadingSplash: false
+        photo, limit, remaining, photos,
+        loadingSplash: false,
+        photoIndex: 0
       });
     });
   }
 
   setSpinnerPercent = spinnerPercent => this.setState({
     spinnerPercent: spinnerPercent === 100 ? -1 : spinnerPercent
-  });
+  })
+
+  handleSelectPhoto = (photoIndex, photoListScroll) => {
+    if (!this.state.photos) return;
+    this.setState({
+      photoIndex, photoListScroll,
+      photo: this.state.photos[photoIndex],
+      spinnerPercent: 5
+    });
+  }
 
   render() {
-    const { spinnerPercent, photo, limit, remaining } = this.state;
+    const { spinnerPercent, photo, limit, remaining, status, photos, photoIndex } = this.state;
 
     if (!photo) {
       return (<div>Loading...</div>);
@@ -58,6 +83,16 @@ class App extends Component {
           onRefreshPhoto={this.refreshPhoto}
           loading={0 < spinnerPercent && spinnerPercent < 100}
           limit={limit} remaining={remaining}
+        />
+        <ClockAndStatus
+          status={status}
+        />
+        <PhotoList
+          photos={photos}
+          idx={photoIndex}
+          scroll={this.state.photoListScroll}
+          onSelectPhoto={this.handleSelectPhoto}
+          loading={0 < spinnerPercent && spinnerPercent < 100}
         />
       </div>
     );

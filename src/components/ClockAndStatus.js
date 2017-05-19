@@ -56,7 +56,7 @@ export default class ClockAndStatus extends React.Component {
           <div style={{
             fontSize: 100,
             fontWeight: 200,
-            letterSpacing: 2,
+            letterSpacing: 2, marginRight: -2,
             fontFamily: 'sans-serif',
             position: 'relative'
           }}>

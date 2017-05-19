@@ -54,8 +54,9 @@ class App extends Component {
     spinnerPercent: spinnerPercent === 100 ? -1 : spinnerPercent
   })
 
-  handleSelectPhoto = (photoIndex, photoListScroll) => {
+  handleSelectPhoto = (_photoIndex, photoListScroll) => {
     if (!this.state.photos) return;
+    const photoIndex = _photoIndex % (this.state.photos.length);
     this.setState({
       photoIndex, photoListScroll,
       photo: this.state.photos[photoIndex],

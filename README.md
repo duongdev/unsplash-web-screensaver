@@ -16,6 +16,9 @@ npm start
 ## Development
 This app is pretty simple, so I think you can read the code and start developing easily.
 
+## Demo
+Check out my demo app at https://scrsvr.duongdev.me.
+
 ## Todo
 * Create native screensaver for MacOS and Windows.
 * Create "new tab" extension for Google Chrome.

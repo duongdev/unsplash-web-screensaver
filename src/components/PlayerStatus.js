@@ -25,19 +25,19 @@ export default class PlayerStatus extends React.Component {
     this.setState({
       currentTime: this.props.player.currentTime
     });
+
     this.itv = setInterval(() => {
-      this.setState({
-        currentTime: this.state.currentTime + 1
-      });
+      if (this.state.currentTime < this.props.player.duration) {
+        this.setState({
+          currentTime: this.state.currentTime + 1
+        });
+      }
     }, 1000);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (
-      (nextProps.player.songId !== this.props.player.songId ||
-        this.state.currentTime - nextProps.player.currentTime > 10) &&
-      this.state.currentTime < nextProps.player.duration
-    ) {
+    if (nextProps.player.songId !== this.props.player.songId ||
+        this.state.currentTime - nextProps.player.currentTime > 10) {
       this.setState({
         currentTime: nextProps.player.currentTime
       });

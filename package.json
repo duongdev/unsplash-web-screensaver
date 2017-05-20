@@ -1,7 +1,8 @@
 {
-  "name": "unsplash-screensaver",
+  "name": "unsplash-web-screensaver",
   "version": "0.1.0",
-  "private": true,
+  "homepage" : "https://scrsvr.duongdev.me",
+  "private": false,
   "dependencies": {
     "axios": "^0.16.1",
     "jquery": "^3.2.1",

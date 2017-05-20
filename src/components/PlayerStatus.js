@@ -53,10 +53,12 @@ export default class PlayerStatus extends React.Component {
     const { player } = this.props;
     const { currentTime } = this.state;
 
+    const hq = player.kbit === '320';
+
     return (
       <div style={{
         position: 'fixed',
-        top: 50, right: ((Date.now() - player.updatedAt) < 30e3) ? -2 : -302,
+        top: 50, right: (((Date.now() - player.updatedAt) < 30e3) && player.isPlaying) ? -2 : -302,
         transition: 'all 1.5s',
         display: 'flex',
         backgroundColor: 'rgba(0, 0, 0, 0.4)',
@@ -77,8 +79,9 @@ export default class PlayerStatus extends React.Component {
             position: 'absolute',
             top: 6, right: 10,
             padding: 2, fontSize: 10,
-            background: 'yellow', color: '#333',
-            borderRadius: 4
+            background: hq ? 'yellow' : 'grey', color: hq ? '#333' : 'white',
+            borderRadius: 4,
+            transition: 'all 1s'
           }}>{player.kbit}</div>
         </div>
         <div style={{
@@ -98,8 +101,9 @@ export default class PlayerStatus extends React.Component {
               whiteSpace: 'nowrap'
             }}>{player.creator}</div>
             <div style={{
-              width: 81, flexShrink: 0, marginLeft: 15, textAlign: 'right'
-            }}>{`${time(currentTime)} / ${time(player.duration)}`}</div>
+              flexShrink: 0, marginLeft: 15, textAlign: 'right'
+            }}>{(player.currentTime === player.duration) ? 'Loading...' :
+              `${time(currentTime)} / ${time(player.duration)}`}</div>
           </div>
         </div>
       </div>

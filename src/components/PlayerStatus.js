@@ -33,8 +33,11 @@ export default class PlayerStatus extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.player.songId !== this.props.player.songId ||
-      this.state.currentTime - nextProps.player.currentTime > 10) {
+    if (
+      (nextProps.player.songId !== this.props.player.songId ||
+        this.state.currentTime - nextProps.player.currentTime > 10) &&
+      this.state.currentTime < nextProps.player.duration
+    ) {
       this.setState({
         currentTime: nextProps.player.currentTime
       });

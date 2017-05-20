@@ -5,6 +5,7 @@ import BackgroundPhoto from 'components/BackgroundPhoto';
 import PhotoCredit from 'components/PhotoCredit';
 import ClockAndStatus from 'components/ClockAndStatus';
 import PhotoList from 'components/PhotoList';
+import PlayerStatus from 'components/PlayerStatus';
 
 import getRandomPhoto from 'helpers/Unsplash';
 import getHomeStatus from 'helpers/HomeStatus';
@@ -13,7 +14,8 @@ import FA from 'react-fontawesome';
 
 import './App.css';
 
-const HOME_STATUS_INTERVAL = 30; // Get home temperature & humidity every 30 seconds
+const HOME_STATUS_INTERVAL = 5; // Get home temperature & humidity every 5 seconds
+const NEXT_PHOTO = 30;
 
 class App extends Component {
   state = {
@@ -27,11 +29,16 @@ class App extends Component {
       getHomeStatus().then(status => this.setState({
         status
       }));
-      this.handleSelectPhoto(this.state.photoIndex + 1, true)
 
       setTimeout(_r, HOME_STATUS_INTERVAL * 1000);
     }
     _r();
+
+    const _r2 = () => {
+      this.handleSelectPhoto(this.state.photoIndex + 1, true);
+      setTimeout(_r2, NEXT_PHOTO * 1000);
+    }
+    _r2();
   }
 
   refreshPhoto = () => {
@@ -105,6 +112,9 @@ class App extends Component {
         }}>
           Made with <FA name="heart" style={{ color: 'red' }} /> by <strong>Thượng Dương</strong>
         </div>
+        {status.player &&
+          <PlayerStatus player={status.player} />
+        }
       </div>
     );
   }

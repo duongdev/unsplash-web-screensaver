@@ -6,6 +6,7 @@ import PhotoCredit from 'components/PhotoCredit';
 import ClockAndStatus from 'components/ClockAndStatus';
 import PhotoList from 'components/PhotoList';
 import PlayerStatus from 'components/PlayerStatus';
+import Messages from 'components/Messages';
 
 import getRandomPhoto from 'helpers/Unsplash';
 import getHomeStatus from 'helpers/HomeStatus';
@@ -114,6 +115,12 @@ class App extends Component {
         </div>
         {status.player &&
           <PlayerStatus player={status.player} />
+        }
+        {status.messages && status.messages.messages &&
+          <Messages
+            messages={status.messages.messages}
+            updatedAt={status.messages.updatedAt}
+          />
         }
       </div>
     );

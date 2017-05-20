@@ -18,11 +18,12 @@ This app is pretty simple, so I think you can read the code and start developing
 
 ## Todo
 * Create native screensaver for MacOS and Windows.
-* Create new tab extension on Google Chrome.
+* Create "new tab" extension for Google Chrome.
 * Display photo exif information.
 * Display notes, todo list, calendar, ...
 * Add a page allows users to configure their photos, notes, todo list, calendar, ...
-* Create a mobile application for configuration. Allows users to scan QR code from the screensaver to pair with the mobile app.
+* Create a mobile application for configuration.
+Allows users to scan QR code from the screensaver to pair with the mobile app.
 
 * Improve English, upgrade README.
 

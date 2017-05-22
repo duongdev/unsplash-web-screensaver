@@ -19,19 +19,19 @@ export default class Messages extends React.Component {
       <div className="Messages" style={{
         position: 'fixed',
         width: 300,
-        right: (messages.length > 0) ? -2 : -332,
+        right: (messages.length > 0) ? -2 : -302,
         bottom: 210,
         overflowY: 'auto',
         overflowX: 'visible',
         display: 'flex',
         transition: 'all 1s',
         backgroundColor: 'rgba(0, 0, 0, 0.4)',
-        padding: '15px 15px',
         borderRadius: 2,
         color: 'white',
         justifyContent: 'space-between'
       }}>
-        <i className="fa fa-facebook" aria-hidden="true"></i> <div>{messages.length} new messages</div>
+        <div style={{ padding: 15 }}><i className="fa fa-facebook" aria-hidden="true"></i></div>
+        <div style={{ padding: 15, paddingLeft: 0 }}>{messages.length} new messages</div>
       </div>
     );
   }

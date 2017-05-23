@@ -1,9 +1,13 @@
 import axios from 'axios';
+import qs from 'qs';
 
 const API_URL = 'https://api.unsplash.com';
-const AUTH = 'Client-ID 68115450b21d29f712e08ebf8c6389f38f4e6f223d97157f77e5076dc64e483f';
+const AUTH = 'Client-ID 454087647775b190c574339cb2994716b17ef2f83ad11838d0ef0dac2d102e66';
+// steal Trello LOL
 
 export default () => {
+  const query = qs.parse(window.location.search.replace('?', '')).query;
+  const featured = qs.parse(window.location.search.replace('?', '')).featured;
   return axios({
     method: 'get',
     url: `${API_URL}/photos/random`,
@@ -11,8 +15,8 @@ export default () => {
       Authorization: AUTH
     },
     params: {
-      featured: true,
-      // query: 'girl',
+      featured: featured || true,
+      query,
       count: 30
     }
   }).then(response => Promise.resolve({

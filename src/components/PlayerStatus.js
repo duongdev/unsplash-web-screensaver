@@ -7,8 +7,8 @@ const st = _s => {
   return s;
 };
 const time = _t => {
-  const t = parseInt(_t);
-  return `${st(parseInt(t / 60))}:${st(parseInt(t % 60))}`;
+  const t = parseInt(_t, 10);
+  return `${st(parseInt(t / 60, 10))}:${st(parseInt(t % 60, 10))}`;
 }
 
 export default class PlayerStatus extends React.Component {

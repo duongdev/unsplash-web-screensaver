@@ -14,7 +14,7 @@ const PhotoCredit = ({
     top: 10, left: 10,
     opacity: 0.8,
     transition: 'all 1s',
-    filter: `blur(${loading ? 3 : 0}px)`,
+    // filter: `blur(${loading ? 3 : 0}px)`,
     ...style
   }}>
     <a

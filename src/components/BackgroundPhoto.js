@@ -49,11 +49,14 @@ export default class BackgroundPhoto extends React.Component {
   }
 
   render() {
-    const { photo, percent } = this.props;
+    const {
+      photo,
+      // percent
+    } = this.props;
     const { photoURL } = this.state;
 
-    const _percent = (percent < 0 || percent >= 100) ? 100 : percent;
-    const blur = (100 - _percent) * .2;
+    // const _percent = (percent < 0 || percent >= 100) ? 100 : percent;
+    // const blur = (100 - _percent) * .2;
 
     return (
       <div className="BackgroundPhoto" style={{
@@ -64,7 +67,7 @@ export default class BackgroundPhoto extends React.Component {
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         transition: 'all 1s',
-        filter: `blur(${blur}px)`,
+        // filter: `blur(${blur}px)`,
         zIndex
       }} />
     );

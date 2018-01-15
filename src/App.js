@@ -15,7 +15,7 @@ import FA from 'react-fontawesome';
 
 import './App.css';
 
-const HOME_STATUS_INTERVAL = 5; // Get home temperature & humidity every 5 seconds
+const HOME_STATUS_INTERVAL = 60; // Get home temperature & humidity every 5 seconds
 const NEXT_PHOTO = 30;
 
 class App extends Component {

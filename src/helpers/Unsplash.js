@@ -15,7 +15,7 @@ export default () => {
       Authorization: AUTH
     },
     params: {
-      featured: featured || true,
+      featured: typeof featured === 'undefined' ? true : featured,
       query,
       count: 30
     }

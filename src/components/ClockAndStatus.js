@@ -47,7 +47,9 @@ export default class ClockAndStatus extends React.Component {
           {status &&
             <div style={{
               display: 'flex', flexDirection: 'column', fontSize: 30,
-              fontWeight: 200, margin: 'auto', marginRight: 10
+              fontWeight: 300, margin: 'auto', marginRight: 10,
+              paddingTop: 8,
+              paddingRight: 24
             }}>
               <div style={{ marginBottom: 2 }}><FA className="fa-fw" name="thermometer-empty" /> {status.temp}</div>
               <div><FA className="fa-fw" name="snowflake-o" /> {status.hum}</div>
@@ -55,9 +57,9 @@ export default class ClockAndStatus extends React.Component {
           }
           <div style={{
             fontSize: 100,
-            fontWeight: 200,
+            fontWeight: 300,
             letterSpacing: 2, marginRight: -2,
-            fontFamily: 'sans-serif',
+            fontFamily: 'Roboto',
             position: 'relative'
           }}>
             {time.format('H:mm')}
@@ -66,7 +68,8 @@ export default class ClockAndStatus extends React.Component {
         <div style={{
           textAlign: 'right',
           fontSize: 30,
-          paddingRight: 7
+          paddingRight: 7,
+          fontWeight: 300,
         }}>{time.format('dddd, MMMM Do YYYY')}</div>
       </div>
     );

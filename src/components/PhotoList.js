@@ -31,7 +31,10 @@ export default class PhotoList extends React.Component {
   }
 
   render() {
-    const { photos, idx, loading } = this.props;
+    const {
+      photos, idx,
+      // loading
+    } = this.props;
 
     return (
       <div
@@ -43,7 +46,7 @@ export default class PhotoList extends React.Component {
           overflowY: 'auto', overflowX: 'hidden',
           marginRight: -50,
           paddingRight: 50,
-          filter: `blur(${loading ? 2 : 0}px)`
+          // filter: `blur(${loading ? 2 : 0}px)`
         }}
         onMouseEnter={() => this.setState({ containerOpacity: 1 })}
         onMouseLeave={() => this.setState({ containerOpacity: 0.8 })}

@@ -113,10 +113,10 @@ class App extends Component {
         }}>
           Made with <FA name="heart" style={{ color: 'red' }} /> by <strong>Thượng Dương</strong>
         </div>
-        {status.player &&
+        {status && status.player &&
           <PlayerStatus player={status.player} />
         }
-        {status.messages && status.messages.messages &&
+        {status && status.messages && status.messages.messages &&
           <Messages
             messages={status.messages.messages}
             updatedAt={status.messages.updatedAt}
